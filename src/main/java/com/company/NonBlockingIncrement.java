@@ -6,8 +6,8 @@ public class NonBlockingIncrement {
 
     private AtomicLong value;
 
-    public NonBlockingIncrement(AtomicLong value) {
-        this.value =  value ;
+    public NonBlockingIncrement(long value) {
+        this.value =  new AtomicLong( value ); ;
     }
 
     public long get(){

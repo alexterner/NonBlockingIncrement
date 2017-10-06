@@ -11,16 +11,16 @@ import java.util.concurrent.atomic.AtomicLong;
  */
 public class App 
 {
+    private static final int NUM_THREADS = 10;
+
     public static void main( String[] args )
     {
-        System.out.println( "Hello World!" );
 
         ExecutorService executorService = Executors.newFixedThreadPool(10);
 
-        AtomicLong value = new AtomicLong( 5 );
-        NonBlockingIncrement nonBlockingIncrement = new NonBlockingIncrement(value);
+        NonBlockingIncrement nonBlockingIncrement = new NonBlockingIncrement(5);
         List<Future<String>> futures = new ArrayList();
-        for(int i = 0 ; i < 10; i++){
+        for(int i = 0 ; i < NUM_THREADS; i++){
             Callable callable = new IncrementThread( nonBlockingIncrement );
             Future<String> future = executorService.submit( callable );
             futures.add( future );
